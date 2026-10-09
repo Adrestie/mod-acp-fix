@@ -1,0 +1,20 @@
+{
+  "format": "wow-mods-installer/1",
+  "module": "mod-acp-fix",
+  "title": "ACP fix",
+  "server_module": false,
+  "fields": {
+    "game": "required"
+  },
+  "game_files": {
+    "sources": [
+      "data/game"
+    ],
+    "extensions": [
+      ".lua"
+    ],
+    "replaces": [
+      "Interface/AddOns/ACP"
+    ]
+  }
+}

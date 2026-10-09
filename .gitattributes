@@ -1,0 +1,3 @@
+# The files of ACP are kept byte for byte, as the game reads them.
+* text=auto
+data/game/** -text
