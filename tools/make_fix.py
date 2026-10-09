@@ -7,7 +7,8 @@ raises an error ("Locale key ... is not provided") and stops while it loads: its
 copy of the HD packs (3.3.4a, Data\patch-5.MPQ) misses texts in deDE, esES, esMX, frFR, koKR and zhTW.
 
 The fix: ACP.lua shows the English text of a missing text instead of stopping, and each localization
-file gets its missing texts ("Close" takes the game's own word, CLOSE).
+file gets its missing texts ("Close" takes the game's own word, CLOSE). The Spanish texts of ACP.lua,
+ACP.toc and the esES and esMX files also get back the characters the packs lost (each became "?").
 
     python tools/make_fix.py <folder holding ACP.toc, ACP.lua and the localization files>
 """
@@ -76,6 +77,21 @@ TEXTS = {
     },
 }
 
+# The characters lost in the Spanish texts: (damaged text, repaired text), per file.
+SPANISH = [
+    ('"?Recargar la Interfaz', '"¿Recargar la Interfaz'),
+    ('"?Grabar la lista', '"¿Grabar la lista'),
+    ("A?adir", "Añadir"),
+    ("activaci?n", "activación"),
+    (". ?Recargar ahora?", ". ¿Recargar ahora?"),
+]
+REPAIRS = {
+    "ACP.lua": [('"T?tulos"', '"Títulos"')],
+    "ACP.toc": [("A?ade", "Añade"), ("men? '", "menú '")],
+    "localization-esES.lua": SPANISH,
+    "localization-esMX.lua": SPANISH,
+}
+
 
 def code(text):
     """The Lua code of text (a str) without its comments; strings are kept."""
@@ -115,18 +131,30 @@ def lua_code(content):
     return code(content.decode("latin-1"))
 
 
+def escaped(text):
+    """text (a str) for a Lua file: every byte outside printable ASCII as a decimal escape, so the file's
+    encoding does not matter."""
+    return "".join(chr(b) if 0x20 <= b < 0x7F else "\\%03d" % b for b in text.encode("utf-8"))
+
+
 def lua_string(value):
-    """value as a Lua string; every byte past ASCII as a decimal escape, so the file's encoding does not
-    matter."""
-    out = []
-    for b in value.encode("utf-8"):
-        if b in (0x22, 0x5C):
-            out.append("\\" + chr(b))
-        elif 0x20 <= b < 0x7F:
-            out.append(chr(b))
-        else:
-            out.append("\\%03d" % b)
-    return '"%s"' % "".join(out)
+    """value (a str) as a quoted Lua string."""
+    return '"%s"' % escaped(value.replace("\\", "\\\\").replace('"', '\\"'))
+
+
+def repaired(name, content, pairs):
+    """(content, count): the content (bytes) of the file name with each damaged text of pairs replaced
+    by its repaired text (escaped in a Lua file, UTF-8 elsewhere), and the count of replacements."""
+    count = 0
+    for damaged, text in pairs:
+        old = damaged.encode("ascii")
+        new = escaped(text).encode("ascii") if name.endswith(".lua") else text.encode("utf-8")
+        found = content.count(old)
+        if not found:
+            print("%s: %r not found" % (name, damaged))
+        content = content.replace(old, new)
+        count += found
+    return content, count
 
 
 def localization_files(toc):
@@ -202,6 +230,14 @@ def main():
             added = len([k for k in missing if k in GLOBAL_TEXTS or k in TEXTS.get(language, {})])
         print("%s: %d text(s) missing, %d added%s" % (language, len(missing), added,
                                                       ", the others in English" if added < len(missing) else ""))
+    for name, pairs in sorted(REPAIRS.items()):
+        content = files[name] if name in files else read(name)
+        if content is None:
+            continue
+        new, count = repaired(name, content, pairs)
+        if count:
+            files[name] = new
+        print("%s: %d text(s) repaired" % (name, count))
 
     os.makedirs(OUTPUT, exist_ok=True)
     for name in os.listdir(OUTPUT):

@@ -1,0 +1,34 @@
+﻿## Interface: 30300
+## Title: |cffffffff>|r|cff228B22Addon Control Panel|r |cffffe00a-|r |cffff0000HD client|r
+## Author: sylvanaar, Rophy, Saien
+## Notes: Adds an addon manager in game via the 'Addons' menu. Special support for multi-part addons. Based on rMCP by Rophy.
+## Notes-enGB: Adds an addon manager in game via the 'Addons' menu. Special support for multi-part addons. Based on rMCP by Rophy.
+## Notes-ruRU: Добавляет менеджер модификаций а игру посредством пункта меню 'Модификации'. Специальная поддержка модификаций состоящих из нескольких частей. Основан на rMCP от Rophy.
+## Notes-zhTW: 在系統選單按「插件管理」按鈕管理插件。ACP 以 rMCP (MCP，由Rophy修改) 為基礎。
+## Notes-esES: Añade un panel de Accesorios en el juego mediante el menú 'Accesorios'. Soporte especial para accesorios multi-parte. Basado en rMCP de Rophy.
+## Notes-esMX: Añade un panel de Accesorios en el juego mediante el menú 'Accesorios'. Soporte especial para accesorios multi-parte. Basado en rMCP de Rophy.
+## Notes-zhCN: 在系统选项按「插件管理」按钮管理插件。ACP 以 rMCP（MCP，由 Rophy 修改）为基础。
+## Notes-enCN: 在系统选项按「插件管理」按钮管理插件。ACP 以 rMCP（MCP，由 Rophy 修改）为基础。
+## Notes-koKR: '수정' 메뉴 항목을 통해 게임에 수정 관리자를 추가합니다. 여러 부분으로 구성된 수정을 위한 특별 지원. Rophy의 rMCP를 기반으로 합니다.
+## Notes-deDE: Fügt dem Spiel über den Menüpunkt „Modifikationen“ einen Modifikationsmanager hinzu. Besondere Unterstützung für Modifikationen, die aus mehreren Teilen bestehen. Basierend auf rMCP von Rophy.
+## Notes-frFR: Ajoute un gestionnaire de modifications au jeu via l'élément de menu "Modifications". Support spécial pour les modifications composées de plusieurs parties. Basé sur le rMCP de Rophy.
+## Version: 3.3.4a
+## SavedVariables: ACP_Data
+
+## X-Credits: ACP based now on rMCP, which is MCP modified by Rophy, originally by Saien.
+
+## X-Category: Interface Enhancements
+
+ACP.lua
+localization-enUS.lua
+localization-enGB.lua
+localization-zhTW.lua
+localization-koKR.lua
+localization-deDE.lua
+localization-zhCN.lua
+localization-enCN.lua
+localization-frFR.lua
+localization-esES.lua
+localization-esMX.lua
+localization-ruRU.lua
+ACP.xml

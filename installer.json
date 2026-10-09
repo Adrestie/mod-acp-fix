@@ -11,7 +11,8 @@
       "data/game"
     ],
     "extensions": [
-      ".lua"
+      ".lua",
+      ".toc"
     ],
     "replaces": [
       "Interface/AddOns/ACP"

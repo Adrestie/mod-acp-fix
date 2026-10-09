@@ -23,13 +23,16 @@ title `ADDON_LIST`, no list.
 - `ACP.lua` shows the English text of a missing text instead of stopping.
 - These six localization files get their missing texts. `Close` takes the
   game's own word (`CLOSE`).
+- The Spanish texts get back the characters the pack lost, each turned into `?`
+  (`¿`, `ñ`, `ó`, `í`, `ú`): in `ACP.lua`, `ACP.toc` and the esES and esMX files.
 
 The fixed files are written into the archive the game reads last, which shadows
 those of `patch-5.MPQ` without touching it. Removing the module brings back the
 original ACP.
 
-Only the files that change are shipped: `ACP.lua` and six localization files,
-those of ACP 3.3.4a. With another version of ACP, do not install this module.
+Only the files that change are shipped: `ACP.lua`, `ACP.toc` and six
+localization files, those of ACP 3.3.4a. With another version of ACP, do not
+install this module.
 
 ## Install
 
@@ -48,5 +51,6 @@ python tools/make_fix.py <folder of the original files>
 
 ## Credits
 
-ACP is the work of sylvanaar, Rophy and Saien. The files in `data/game` are
-theirs, with the changes above.
+ACP is probably the work of sylvanaar, Rophy and Saien, the authors its own
+`ACP.toc` names (see [LICENSE](LICENSE)). The files in `data/game` come from
+their addon, as the HD packs carry it, with the changes above.

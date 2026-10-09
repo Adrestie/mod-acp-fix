@@ -2,8 +2,8 @@ if not ACP then return end
 
 if (GetLocale() == "esMX") then
 	ACP:UpdateLocale( {
-		["Reload your User Interface?"] = "?Recargar la Interfaz de Usuario?",
-		["Save the current addon list to [%s]?"] = "?Grabar la lista actual de accesorios en [%s]?",
+		["Reload your User Interface?"] = "\194\191Recargar la Interfaz de Usuario?",
+		["Save the current addon list to [%s]?"] = "\194\191Grabar la lista actual de accesorios en [%s]?",
 		["Enter the new name for [%s]:"] = "Escriba el nuevo nombre para [%s]:",
 		["Addons [%s] Saved."] = "Accesorios [%s] grabados.",
 		["Addons [%s] Unloaded."] = "Accesorios [%s] descargados.",
@@ -26,14 +26,14 @@ if (GetLocale() == "esMX") then
 		["Set "] = "Perfil ";
 		["Save"] = "Grabar ";
 		["Load"] = "Cargar ";
-		["Add to current selection"] = "A?adir a la selecci\195\179n actual";
+		["Add to current selection"] = "A\195\177adir a la selecci\195\179n actual";
 		["Remove from current selection"] = "Eliminar de la selecci\195\179n actual";
 		["Rename"] = "Renombrar ";
-		["Use SHIFT to override the current enabling of dependancies behaviour."] = "Utilice MAY para reemplazar el comportamiento de activaci?n de dependencias actual.",
+		["Use SHIFT to override the current enabling of dependancies behaviour."] = "Utilice MAY para reemplazar el comportamiento de activaci\195\179n de dependencias actual.",
 		["Press CTRL to override the enabling of LoD children."] = "Presione CTRL para reemplazar la activaci\195\179n de los hijos CaD.",
 			["Click to enable protect mode. Protected addons will not be disabled"] = "Clic para activar el modo protegido. Los accesorios protegidos no seran deshabilitados",
 			["when performing a reloadui."] = "cuando realice RecargarIU.",
-			["ACP: Some protected addons aren't loaded. Reload now?"] = "ACP: Algunos accesorios protegidos no se encuentran cargados. ?Recargar ahora?",
+			["ACP: Some protected addons aren't loaded. Reload now?"] = "ACP: Algunos accesorios protegidos no se encuentran cargados. \194\191Recargar ahora?",
 		
 		
 		["Blizzard_AchievementUI"] = "Blizzard: Achievement",

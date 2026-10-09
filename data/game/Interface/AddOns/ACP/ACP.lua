@@ -96,14 +96,14 @@ elseif (GetLocale() == "frFR") then
 	GROUP_BY_NAME = "Group. par nom"
 elseif (GetLocale() == "esES") then
 	DEFAULT = "Por Defecto"
-	TITLES = "T?tulos"
+	TITLES = "T\195\173tulos"
 	ACE2 = "Ace2"
 	AUTHOR = "Autor"
 	SEPARATE_LOD_LIST = "Lista CaD por separ."
 	GROUP_BY_NAME = "Agrupar por nombre"
 	elseif (GetLocale() == "esMX") then
 	DEFAULT = "Por Defecto"
-	TITLES = "T?tulos"
+	TITLES = "T\195\173tulos"
 	ACE2 = "Ace2"
 	AUTHOR = "Autor"
 	SEPARATE_LOD_LIST = "Lista CaD por separ."
