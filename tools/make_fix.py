@@ -58,7 +58,7 @@ TEXTS = {
         "Set ": "Set ",
         "Status": "Status",
         "Use SHIFT to override the current enabling of dependancies behaviour.":
-            "UMSCHALT umgeht das aktuelle Aktivieren der Abhängigkeiten.",
+            "UMSCHALT kehrt das aktuelle Verhalten beim Aktivieren der Abhängigkeiten um.",
         "Version": "Version",
         "when performing a reloadui.": "beim Neuladen der Oberfläche nicht deaktiviert.",
     },
@@ -111,6 +111,7 @@ def code(text):
 
 
 def lua_code(content):
+    """The Lua code of a file's content (bytes) without its comments."""
     return code(content.decode("latin-1"))
 
 
@@ -129,7 +130,7 @@ def lua_string(value):
 
 
 def localization_files(toc):
-    """{language: file name} of the localization files the .toc loads."""
+    """{language: file name} of the localization files that toc, the content of ACP.toc (bytes), loads."""
     found = {}
     for line in toc.decode("latin-1").splitlines():
         m = re.match(r"\s*(localization-([A-Za-z]{4})\.lua)\s*$", line)
@@ -139,7 +140,8 @@ def localization_files(toc):
 
 
 def completed(content, language, keys):
-    """The localization file (bytes) with the texts of keys known here added at the end of its table."""
+    """The localization file content (bytes) of language (such as "frFR") with the texts of keys, the
+    missing keys, known here added at the end of its table; None if none is known or the table is not found."""
     lines = []
     for key in keys:
         if key in GLOBAL_TEXTS:
@@ -194,11 +196,12 @@ def main():
             continue
         missing = sorted(asked - set(GIVEN.findall(lua_code(content))))
         new = completed(content, language, missing) if missing else None
+        added = 0
         if new is not None:
             files[name] = new
-        left = [k for k in missing if k not in GLOBAL_TEXTS and k not in TEXTS.get(language, {})]
-        print("%s: %d text(s) missing, %d added%s" % (language, len(missing), len(missing) - len(left),
-                                                      ", the others in English" if left else ""))
+            added = len([k for k in missing if k in GLOBAL_TEXTS or k in TEXTS.get(language, {})])
+        print("%s: %d text(s) missing, %d added%s" % (language, len(missing), added,
+                                                      ", the others in English" if added < len(missing) else ""))
 
     os.makedirs(OUTPUT, exist_ok=True)
     for name in os.listdir(OUTPUT):

@@ -61,7 +61,7 @@ if (GetLocale() == "deDE") then
 		["Save"] = "Speichern",
 		["Set "] = "Set ",
 		["Status"] = "Status",
-		["Use SHIFT to override the current enabling of dependancies behaviour."] = "UMSCHALT umgeht das aktuelle Aktivieren der Abh\195\164ngigkeiten.",
+		["Use SHIFT to override the current enabling of dependancies behaviour."] = "UMSCHALT kehrt das aktuelle Verhalten beim Aktivieren der Abh\195\164ngigkeiten um.",
 		["Version"] = "Version",
 		["when performing a reloadui."] = "beim Neuladen der Oberfl\195\164che nicht deaktiviert.",
 	} )

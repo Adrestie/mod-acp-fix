@@ -6,9 +6,10 @@ Warcraft 3.3.5a carry in `Data\patch-5.MPQ` (ACP 3.3.4a, "HD client").
 ## The problem
 
 ACP takes its texts from one localization file per language, and stops with an
-error when its language lacks a text. Its German, Spanish, Mexican Spanish,
-French, Korean and Traditional Chinese files lack some (`Close`, `Memory Usage`,
-and 21 more in German). In those languages ACP stops while it loads:
+error when its language lacks a text. Six of its files lack some: `Close` in
+Korean and Traditional Chinese, `Close`, `Active Embeds` and `Memory Usage` in
+Spanish, Mexican Spanish and French, 23 texts in German. In those languages ACP
+stops while it loads:
 
 ```
 Interface\AddOns\ACP\ACP.lua:125: Locale key Close is not provided.
@@ -20,8 +21,8 @@ title `ADDON_LIST`, no list.
 ## The fix
 
 - `ACP.lua` shows the English text of a missing text instead of stopping.
-- The localization files get their missing texts. `Close` takes the game's own
-  word (`CLOSE`), in every language.
+- These six localization files get their missing texts. `Close` takes the
+  game's own word (`CLOSE`).
 
 The fixed files are written into the archive the game reads last, which shadows
 those of `patch-5.MPQ` without touching it. Removing the module brings back the
